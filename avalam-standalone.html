@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+// Ça c'est n´ecessaire au début du code
 
 <!-- **** H E A D **** -->
 <head>	
@@ -11,12 +12,14 @@
 	#avalam{
 		width:900px;
 		height:750px;
+		//taille de l'image
 		margin:auto;
 		position:relative;
 	}
 
 	#palette {display:none;}
 	.rouge, .jaune {position:absolute;z-index:10; }
+	//z-index?
 	.indice {position:absolute;top:50px;left:65px;}
 	.nombre {position:absolute;top:22px;left:28px;
 		font-family:courier;font-weight:bold;font-size:18pt;}	
@@ -24,7 +27,9 @@
 </style>
 
 <script src="jquery.js"></script>
+	//c'est une bibliothèque qui facilite la programmation
 <script src="avalam.js"></script>
+	//c'est l'archive qui donne la position, les voisins et la couleur de chaque pièce
 
 <script>
  
@@ -32,7 +37,7 @@ var position = [];
 var modeDeplacement = false;
 var indiceDepart=false; 
 var colDepart=false;  
-
+//initialisation du deplacement
 
 $(document).ready(function(){
 	var jaune = $(".jaune"); 
@@ -44,6 +49,10 @@ $(document).ready(function(){
 		console.log("couleur:" + position[indice].col + " nombre:" + position[indice].n);
 
 		if (!modeDeplacement) { // debut deplacement 
+			// on peut faire une condition pour commencer le deplacement
+			// avant que l'on commence, on verifie si la pile est morte ou pas
+			// (on doit vérifier si la pile a moins de 5 pièces ou si elle a des voisines qui 
+			//peuvent récevoir ses pièces)
 			console.log("debut deplacement");
 			modeDeplacement = true; 
 			indiceDepart = indice;
@@ -121,7 +130,7 @@ $(document).ready(function(){
 		} // FIN:fin deplacement
 	});
 
-
+//mouseover est quand le mouse arrive à pièce, et mouseout est quand il y sort
 	$(document).on("mouseover",".jaune",function() {
 		if (position[$(this).data("indice")].n == 5) return; 
 // TODO: ajouter un test permettant de parcourir les positions à proximité de ce pion 
